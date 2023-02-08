@@ -65,7 +65,7 @@ export const ChangePassword = (props : Props) => {
 	React.useEffect(() => {
 		// 현재 비빌번호 조회 및 셋팅
 		axios.post(
-				properties.api_domain + '/profile/selectOldPassword',
+				properties.api_domain + '/changePassword/selectOldPassword',
 				{
 					'api-key': 'U0FNR09CX1RPS0VOXzAx',
 					member_seq: memberBase.member_seq,
@@ -94,7 +94,7 @@ export const ChangePassword = (props : Props) => {
 	const updateNewPassword = async () => {
 		const result = await axios
 		.post(
-			properties.api_domain + '/profile/updateNewPassword',
+			properties.api_domain + '/changePassword/updateNewPassword',
 			{
 				'api-key': 'U0FNR09CX1RPS0VOXzAx',
 				member_seq : memberBase.member_seq,
@@ -128,9 +128,7 @@ export const ChangePassword = (props : Props) => {
 		//#todo mbr base = > principal reducer
 		// navigation.navigate(STACK.AUTH, { screen: ROUTES.LOGIN });
 		
-		// navigation.navigate('login', {
-		// 	screen: 'login',
-		// });
+		navigation.navigate('Login');
 	};
 
 	return (
