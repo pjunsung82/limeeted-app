@@ -1,6 +1,7 @@
 import { styles, modalStyle, layoutStyle } from 'assets/styles/Styles';
 import CommonHeader from 'component/CommonHeader';
 import { CommonInput } from 'component/CommonInput';
+import { CommonTextarea } from 'component/CommonTextarea';
 import { CommonText } from 'component/CommonText';
 import SpaceView from 'component/SpaceView';
 import { ScrollView, View, Image, Modal, TouchableOpacity, Alert, Text } from 'react-native';
@@ -96,7 +97,7 @@ export const CustomerInquiry = (props : Props) => {
 					</SpaceView>
 
 					<SpaceView mb={16}>
-						<CommonInput
+						<CommonTextarea
 							label={'내용'} 
 							value={contents}
 							onChangeText={(contents) => setContents(contents)}
