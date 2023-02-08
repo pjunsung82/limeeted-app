@@ -104,6 +104,7 @@ export const CustomerInquiry = (props : Props) => {
 							placeholder={'내용을 입력해 주세요.'}
 							placeholderTextColor={'#c6ccd3'}
 							maxLength={240}
+							exceedCharCountColor={'#990606'}
 						/>
 					</SpaceView>
 

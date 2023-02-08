@@ -8,22 +8,38 @@ import { ICON } from 'utils/imageUtils';
 type Props = {
   label?: string;
   placeholder?: string;
-  rightPen?: boolean;
   disabled?: boolean;
   isMasking?: boolean;
   maxLength?: number;
+  exceedCharCountColor?: string;
+  onChangeText: (text: string) => void;
 } & StyleProp<TextInputProps>;
 
 /**
  * 공통 인풋박스
  * @param {string} label 인풋 라벨
  * @param {string} placeholder 인풋 플레이스 홀더
- * @param {boolean} rightPen 오른쪽 펜 모양 여부
  * @param {boolean} disabled 비활성화 여부
  * @param {boolean} isMasking 마스킹 처리 여부
  *
  */
 export const CommonTextarea: FC<Props> = (props: any) => {
+  
+  const [charCount, setCharCount] = React.useState(0);
+
+  const handleChangeText = (text: string) => {
+    setCharCount(text.length);
+    if (props.onChangeText) props.onChangeText(text);
+  };
+
+  const renderCharCount = () => {
+    if (!props.maxLength) return null;
+
+    return (
+      <Text>{`${charCount}/${props.maxLength}`}</Text>
+    );
+  };
+
   return (
     <View>
       <View style={styles.labelContainer}>
@@ -42,12 +58,7 @@ export const CommonTextarea: FC<Props> = (props: any) => {
           maxLength={props.maxLength ? props.maxLength : 1000}
         />
       </View>
-
-      {props.rightPen && (
-        <View style={styles.penContainer}>
-          <Image source={ICON.penGray} style={styles.iconSize} />
-        </View>
-      )}
+      {renderCharCount()}
     </View>
   );
 };
@@ -74,6 +85,7 @@ const styles = StyleSheet.create({
     color: Color.gray6666,
   },
   inputContainer: {
+    margin: 16,
     textAlign: 'center',
     borderWidth: 1,
     borderColor: '#9E9E9E',
